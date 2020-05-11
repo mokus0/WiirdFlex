@@ -1,0 +1,19 @@
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of PCB Document [FPC test - connector side.PcbDoc]
+   Generated File[FPC test - connector side.GTO]
+   Generated File[FPC test - connector side.GTS]
+   Generated File[FPC test - connector side.GTL]
+   Generated File[FPC test - connector side.GBL]
+   Generated File[FPC test - connector side.GBS]
+   Generated File[FPC test - connector side.GBO]
+   Generated File[FPC test - connector side.GKO]
+   Generated File[FPC test - connector side.RUL]
+   Generated File[FPC test - connector side.EXTREP]
+   Generated File[FPC test - connector side.REP]
+
+
+Files Generated   : 10
+Documents Printed : 0
+
+Finished Output Generation At 10:05:20 PM On 5/10/2020

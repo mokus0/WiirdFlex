@@ -1,0 +1,3 @@
+[submodule "ext/jefflongo"]
+	path = ext/jefflongo
+	url = https://github.com/jefflongo/altium
