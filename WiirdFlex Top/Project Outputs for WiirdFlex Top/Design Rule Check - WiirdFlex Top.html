@@ -1,0 +1,554 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD20\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">5/17/2020</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">5:35:54 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:02</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc" class="file"><acronym title="C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc">C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">70</td></tr>
+</table>
+</td>
+</table><a name="IDM43R3LDVXXLLDY0W4YAXRAKY4OVHP4EBCIEFNIMS5GHO5B12F4VI"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDCEBJS2LRVTEDG2FNPMFZQNR2PF10HP14BCOSQQNJ1330XO55QRGP">Clearance Constraint (Gap=0.15mm) (All),(All)</a></td>
+<td class="column2">42</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDV5VQWIFEHBTNBIECIAXQJF3TEJ40M0UKCKT2GLZMRGUKMRCE1UF">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJGLLMTJHYYTDNEDGZEUQZO3KIBD40DK112ZCTKV4M52DOR5I2NP">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">16</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID3PYVXBZ1IAKUIB0J5YNSQVR32ONEJREQRAMKQ2DGBNPAOTMAD1BE">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDRXUONLAEUMYNIPBZVYBMWRZINKZE2U1WS0EQKGBSPZ5F0S2RYLBO">Width Constraint (Min=0.15mm) (Max=10mm) (Preferred=0.15mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDRVO4Q3EUJEDBOY2MQTNLAG5Y2LU4YHZFGZ2ZXXG3NWFFCZCTIQWG">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGRJQBLG0FUOFP34J5NY5ZMRAPDQ0F5VAWC0UYJLKIZYQYGIRKNHG">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID2SCGH5YO32CNKBW0Z5YJQB0H4CH3D1DREDCSAJGWONOVJBTZDIVK">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDAJCSQFXMJ0NMCBUSWRMSKB1OIDQTPBRWZJ0XV4OA1CXKM3IISK0J">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDYYSGTRZQHRUZF2UVT2VGW30VSON1CWQFWP1LUXHJFR3JJ02URXNC">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDDMOIY05FMXVYJBZZW4AMGSCRJLTE4K0ZJO35KBC4MJBFQS01ZFSD">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDWR1SQYBKN4HUPWPMKB5STGCYFEAMN02XD5GHR5ODJV3ICO0WUIKH">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">6</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDTCXVHI4UTBD4UUNG4AZ0COYC3Z5NMGCMLN1KORUIVEJISGD20C">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">70</td>
+</tr>
+</table><br><a name="IDCEBJS2LRVTEDG2FNPMFZQNR2PF10HP14BCOSQQNJ1330XO55QRGP"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Clearance Constraint (Gap=0.15mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2998.407mil|Location2.X=3005.562mil|Location1.Y=4243.435mil|Location2.Y=4250.59mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2998.407mil|Location2.X=3005.562mil|Location1.Y=4243.435mil|Location2.Y=4250.59mil|Absolute=True">Clearance Constraint: (0.102mm &lt; 0.15mm) Between Arc (-21.6mm,57.8mm) on Top Layer And Arc (-21.9mm,57.9mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2998.391mil|Location2.X=3005.546mil|Location1.Y=4240.516mil|Location2.Y=4247.672mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2998.391mil|Location2.X=3005.546mil|Location1.Y=4240.516mil|Location2.Y=4247.672mil|Absolute=True">Clearance Constraint: (0.1mm &lt; 0.15mm) Between Arc (-21.6mm,57.8mm) on Top Layer And Track (-24.5mm,54.07mm)(-24.5mm,57.9mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3071.615mil|Location2.X=3078.77mil|Location1.Y=4318.074mil|Location2.Y=4325.229mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3071.615mil|Location2.X=3078.77mil|Location1.Y=4318.074mil|Location2.Y=4325.229mil|Absolute=True">Clearance Constraint: (0.06mm &lt; 0.15mm) Between Arc (-21.865mm,57.94mm) on Top Layer And Arc (-21.9mm,57.9mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3072.59mil|Location2.X=3079.745mil|Location1.Y=4318.076mil|Location2.Y=4325.231mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3072.59mil|Location2.X=3079.745mil|Location1.Y=4318.076mil|Location2.Y=4325.231mil|Absolute=True">Clearance Constraint: (0.06mm &lt; 0.15mm) Between Arc (-21.865mm,57.94mm) on Top Layer And Track (-21.9mm,60.5mm)(-11.4mm,60.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3071.958mil|Location2.X=3079.113mil|Location1.Y=4318.076mil|Location2.Y=4325.232mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3071.958mil|Location2.X=3079.113mil|Location1.Y=4318.076mil|Location2.Y=4325.232mil|Absolute=True">Clearance Constraint: (0.06mm &lt; 0.15mm) Between Arc (-21.9mm,57.9mm) on Top Layer And Track (-21.865mm,59.14mm)(-9.94mm,59.14mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2998.385mil|Location2.X=3005.541mil|Location1.Y=4242.345mil|Location2.Y=4249.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2998.385mil|Location2.X=3005.541mil|Location1.Y=4242.345mil|Location2.Y=4249.5mil|Absolute=True">Clearance Constraint: (0.104mm &lt; 0.15mm) Between Arc (-21.9mm,57.9mm) on Top Layer And Track (-23.1mm,53.509mm)(-23.1mm,57.8mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2867.952mil|Location2.X=2877.417mil|Location1.Y=3992.345mil|Location2.Y=4000.073mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2867.952mil|Location2.X=2877.417mil|Location1.Y=3992.345mil|Location2.Y=4000.073mil|Absolute=True">Clearance Constraint: (0.089mm &lt; 0.15mm) Between Arc (-26mm,53.5mm) on Top Layer And Polygon Region (0 hole(s)) Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2732.183mil|Location2.X=2739.338mil|Location1.Y=4549.496mil|Location2.Y=4556.651mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2732.183mil|Location2.X=2739.338mil|Location1.Y=4549.496mil|Location2.Y=4556.651mil|Absolute=True">Clearance Constraint: (0.147mm &lt; 0.15mm) Between Arc (-30.498mm,64.856mm) on Top Layer And Track (-30.55mm,66.07mm)(-30.55mm,68.07mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2732.183mil|Location2.X=2739.338mil|Location1.Y=4549.496mil|Location2.Y=4556.651mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2732.183mil|Location2.X=2739.338mil|Location1.Y=4549.496mil|Location2.Y=4556.651mil|Absolute=True">Clearance Constraint: (0.147mm &lt; 0.15mm) Between Arc (-30.498mm,64.856mm) on Top Layer And Via (-30.55mm,66.07mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2723.496mil|Location2.X=2733.015mil|Location1.Y=4551.724mil|Location2.Y=4559.445mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2723.496mil|Location2.X=2733.015mil|Location1.Y=4551.724mil|Location2.Y=4559.445mil|Absolute=True">Clearance Constraint: (0.091mm &lt; 0.15mm) Between Arc (-30.517mm,65.883mm) on Top Layer And Track (-30.55mm,66.07mm)(-30.55mm,68.07mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2723.496mil|Location2.X=2733.015mil|Location1.Y=4551.724mil|Location2.Y=4559.445mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2723.496mil|Location2.X=2733.015mil|Location1.Y=4551.724mil|Location2.Y=4559.445mil|Absolute=True">Clearance Constraint: (0.091mm &lt; 0.15mm) Between Arc (-30.517mm,65.883mm) on Top Layer And Via (-30.55mm,66.07mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2725.735mil|Location2.X=2732.891mil|Location1.Y=4527.779mil|Location2.Y=4534.935mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2725.735mil|Location2.X=2732.891mil|Location1.Y=4527.779mil|Location2.Y=4534.935mil|Absolute=True">Clearance Constraint: (0.088mm &lt; 0.15mm) Between Arc (-30.519mm,65.878mm) on Top Layer And Polygon Region (0 hole(s)) Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2731.752mil|Location2.X=2738.907mil|Location1.Y=4527.456mil|Location2.Y=4534.611mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2731.752mil|Location2.X=2738.907mil|Location1.Y=4527.456mil|Location2.Y=4534.611mil|Absolute=True">Clearance Constraint: (0.078mm &lt; 0.15mm) Between Arc (-30.5mm,64.852mm) on Top Layer And Polygon Region (0 hole(s)) Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2769.523mil|Location2.X=2776.678mil|Location1.Y=4511.966mil|Location2.Y=4519.122mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2769.523mil|Location2.X=2776.678mil|Location1.Y=4511.966mil|Location2.Y=4519.122mil|Absolute=True">Clearance Constraint: (0.136mm &lt; 0.15mm) Between Arc (-30.638mm,64.58mm) on Top Layer And Polygon Region (0 hole(s)) Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2739.265mil|Location2.X=2746.42mil|Location1.Y=4524.308mil|Location2.Y=4531.463mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2739.265mil|Location2.X=2746.42mil|Location1.Y=4524.308mil|Location2.Y=4531.463mil|Absolute=True">Clearance Constraint: (0.142mm &lt; 0.15mm) Between Arc (-30.641mm,64.579mm) on Top Layer And Polygon Region (0 hole(s)) Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2316.359mil|Location2.X=2323.514mil|Location1.Y=4545.526mil|Location2.Y=4552.682mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2316.359mil|Location2.X=2323.514mil|Location1.Y=4545.526mil|Location2.Y=4552.682mil|Absolute=True">Clearance Constraint: (0.104mm &lt; 0.15mm) Between Arc (-40.155mm,65.47mm) on Top Layer And Arc (-41.712mm,65.558mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2316.304mil|Location2.X=2323.459mil|Location1.Y=4542.485mil|Location2.Y=4549.64mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2316.304mil|Location2.X=2323.459mil|Location1.Y=4542.485mil|Location2.Y=4549.64mil|Absolute=True">Clearance Constraint: (0.1mm &lt; 0.15mm) Between Arc (-40.155mm,65.47mm) on Top Layer And Track (-41.2mm,65.558mm)(-41.2mm,46.57mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2316.359mil|Location2.X=2323.514mil|Location1.Y=4545.526mil|Location2.Y=4552.681mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2316.359mil|Location2.X=2323.514mil|Location1.Y=4545.526mil|Location2.Y=4552.681mil|Absolute=True">Clearance Constraint: (0.104mm &lt; 0.15mm) Between Arc (-40.155mm,65.47mm) on Top Layer And Track (-41.2mm,65.558mm)(-41.2mm,65.558mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2316.304mil|Location2.X=2323.951mil|Location1.Y=4544.215mil|Location2.Y=4554.262mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2316.304mil|Location2.X=2323.951mil|Location1.Y=4544.215mil|Location2.Y=4554.262mil|Absolute=True">Clearance Constraint: (0.115mm &lt; 0.15mm) Between Arc (-41.712mm,65.558mm) on Top Layer And Track (-40.95mm,65.47mm)(-40.95mm,46.57mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4090.051mil|Location2.X=4094.988mil|Location1.Y=1759.342mil|Location2.Y=1764.28mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4090.051mil|Location2.X=4094.988mil|Location1.Y=1759.342mil|Location2.Y=1764.28mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.15mm) Between Pad J5A-1(3.95mm,-5.25mm) on Multi-Layer And Pad J5B-1(3.95mm,-5.25mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4050.681mil|Location2.X=4055.618mil|Location1.Y=1759.342mil|Location2.Y=1764.28mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4050.681mil|Location2.X=4055.618mil|Location1.Y=1759.342mil|Location2.Y=1764.28mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.15mm) Between Pad J5A-2(2.95mm,-5.25mm) on Multi-Layer And Pad J5B-2(2.95mm,-5.25mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2821.538mil|Location2.X=2828.693mil|Location1.Y=4518.736mil|Location2.Y=4525.892mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2821.538mil|Location2.X=2828.693mil|Location1.Y=4518.736mil|Location2.Y=4525.892mil|Absolute=True">Clearance Constraint: (0.116mm &lt; 0.15mm) Between Polygon Region (0 hole(s)) Top Layer And Polygon Region (0 hole(s)) Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2998.39mil|Location2.X=3005.546mil|Location1.Y=4090.131mil|Location2.Y=4097.286mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2998.39mil|Location2.X=3005.546mil|Location1.Y=4090.131mil|Location2.Y=4097.286mil|Absolute=True">Clearance Constraint: (0.1mm &lt; 0.15mm) Between Polygon Region (0 hole(s)) Top Layer And Track (-23.1mm,53.509mm)(-23.1mm,57.8mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2797.653mil|Location2.X=2805.661mil|Location1.Y=4553.563mil|Location2.Y=4561.501mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2797.653mil|Location2.X=2805.661mil|Location1.Y=4553.563mil|Location2.Y=4561.501mil|Absolute=True">Clearance Constraint: (0.145mm &lt; 0.15mm) Between Polygon Region (0 hole(s)) Top Layer And Track (-28.55mm,66.07mm)(-28.55mm,68.07mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2769.836mil|Location2.X=2776.991mil|Location1.Y=4508.054mil|Location2.Y=4515.209mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2769.836mil|Location2.X=2776.991mil|Location1.Y=4508.054mil|Location2.Y=4515.209mil|Absolute=True">Clearance Constraint: (0.141mm &lt; 0.15mm) Between Polygon Region (0 hole(s)) Top Layer And Track (-29.7mm,55.7mm)(-29.7mm,64.58mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2738.206mil|Location2.X=2746.087mil|Location1.Y=4523.331mil|Location2.Y=4532.167mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2738.206mil|Location2.X=2746.087mil|Location1.Y=4523.331mil|Location2.Y=4532.167mil|Absolute=True">Clearance Constraint: (0.104mm &lt; 0.15mm) Between Polygon Region (0 hole(s)) Top Layer And Track (-30.254mm,65.098mm)(-30.188mm,65.032mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2727.541mil|Location2.X=2735.506mil|Location1.Y=4527.131mil|Location2.Y=4535.142mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2727.541mil|Location2.X=2735.506mil|Location1.Y=4527.131mil|Location2.Y=4535.142mil|Absolute=True">Clearance Constraint: (0.146mm &lt; 0.15mm) Between Polygon Region (0 hole(s)) Top Layer And Track (-30.519mm,65.2mm)(-30.5mm,65.2mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2731.752mil|Location2.X=2738.907mil|Location1.Y=4527.456mil|Location2.Y=4534.611mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2731.752mil|Location2.X=2738.907mil|Location1.Y=4527.456mil|Location2.Y=4534.611mil|Absolute=True">Clearance Constraint: (0.078mm &lt; 0.15mm) Between Polygon Region (0 hole(s)) Top Layer And Track (-30.5mm,65.2mm)(-30.5mm,65.2mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2708.278mil|Location2.X=2716.287mil|Location1.Y=4536.617mil|Location2.Y=4544.555mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2708.278mil|Location2.X=2716.287mil|Location1.Y=4536.617mil|Location2.Y=4544.555mil|Absolute=True">Clearance Constraint: (0.102mm &lt; 0.15mm) Between Polygon Region (0 hole(s)) Top Layer And Track (-31.392mm,65.792mm)(-30.999mm,65.399mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2326.64mil|Location2.X=2333.795mil|Location1.Y=3817.288mil|Location2.Y=3824.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2326.64mil|Location2.X=2333.795mil|Location1.Y=3817.288mil|Location2.Y=3824.444mil|Absolute=True">Clearance Constraint: (0.125mm &lt; 0.15mm) Between Polygon Region (0 hole(s)) Top Layer And Track (-40.95mm,65.47mm)(-40.95mm,46.57mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2305.97mil|Location2.X=2313.126mil|Location1.Y=3818.076mil|Location2.Y=3825.231mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2305.97mil|Location2.X=2313.126mil|Location1.Y=3818.076mil|Location2.Y=3825.231mil|Absolute=True">Clearance Constraint: (0.125mm &lt; 0.15mm) Between Polygon Region (0 hole(s)) Top Layer And Track (-41.2mm,65.558mm)(-41.2mm,46.57mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2797.653mil|Location2.X=2805.661mil|Location1.Y=4553.563mil|Location2.Y=4561.501mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2797.653mil|Location2.X=2805.661mil|Location1.Y=4553.563mil|Location2.Y=4561.501mil|Absolute=True">Clearance Constraint: (0.145mm &lt; 0.15mm) Between Polygon Region (0 hole(s)) Top Layer And Via (-28.55mm,66.07mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3072.59mil|Location2.X=3079.745mil|Location1.Y=4318.076mil|Location2.Y=4325.231mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3072.59mil|Location2.X=3079.745mil|Location1.Y=4318.076mil|Location2.Y=4325.231mil|Absolute=True">Clearance Constraint: (0.06mm &lt; 0.15mm) Between Track (-21.865mm,59.14mm)(-9.94mm,59.14mm) on Top Layer And Track (-21.9mm,60.5mm)(-11.4mm,60.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2998.391mil|Location2.X=3005.546mil|Location1.Y=4093.666mil|Location2.Y=4100.822mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2998.391mil|Location2.X=3005.546mil|Location1.Y=4093.666mil|Location2.Y=4100.822mil|Absolute=True">Clearance Constraint: (0.1mm &lt; 0.15mm) Between Track (-23.1mm,53.509mm)(-23.1mm,57.8mm) on Top Layer And Track (-24.5mm,54.07mm)(-24.5mm,57.9mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2731.632mil|Location2.X=2738.787mil|Location1.Y=4549.482mil|Location2.Y=4556.638mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2731.632mil|Location2.X=2738.787mil|Location1.Y=4549.482mil|Location2.Y=4556.638mil|Absolute=True">Clearance Constraint: (0.146mm &lt; 0.15mm) Between Track (-30.517mm,65.5mm)(-30.498mm,65.5mm) on Top Layer And Track (-30.55mm,66.07mm)(-30.55mm,68.07mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2731.632mil|Location2.X=2738.787mil|Location1.Y=4549.482mil|Location2.Y=4556.638mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2731.632mil|Location2.X=2738.787mil|Location1.Y=4549.482mil|Location2.Y=4556.638mil|Absolute=True">Clearance Constraint: (0.146mm &lt; 0.15mm) Between Track (-30.517mm,65.5mm)(-30.498mm,65.5mm) on Top Layer And Via (-30.55mm,66.07mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2723.496mil|Location2.X=2733.015mil|Location1.Y=4551.724mil|Location2.Y=4559.446mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2723.496mil|Location2.X=2733.015mil|Location1.Y=4551.724mil|Location2.Y=4559.446mil|Absolute=True">Clearance Constraint: (0.091mm &lt; 0.15mm) Between Track (-30.55mm,66.07mm)(-30.55mm,68.07mm) on Top Layer And Track (-30.788mm,65.612mm)(-30.788mm,65.612mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2719.999mil|Location2.X=2728.007mil|Location1.Y=4554.649mil|Location2.Y=4562.587mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2719.999mil|Location2.X=2728.007mil|Location1.Y=4554.649mil|Location2.Y=4562.587mil|Absolute=True">Clearance Constraint: (0.067mm &lt; 0.15mm) Between Track (-30.55mm,66.07mm)(-30.55mm,68.07mm) on Top Layer And Track (-31.268mm,66.092mm)(-30.788mm,65.612mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2723.496mil|Location2.X=2733.015mil|Location1.Y=4551.724mil|Location2.Y=4559.446mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2723.496mil|Location2.X=2733.015mil|Location1.Y=4551.724mil|Location2.Y=4559.446mil|Absolute=True">Clearance Constraint: (0.091mm &lt; 0.15mm) Between Track (-30.788mm,65.612mm)(-30.788mm,65.612mm) on Top Layer And Via (-30.55mm,66.07mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2719.999mil|Location2.X=2728.007mil|Location1.Y=4554.649mil|Location2.Y=4562.587mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2719.999mil|Location2.X=2728.007mil|Location1.Y=4554.649mil|Location2.Y=4562.587mil|Absolute=True">Clearance Constraint: (0.067mm &lt; 0.15mm) Between Track (-31.268mm,66.092mm)(-30.788mm,65.612mm) on Top Layer And Via (-30.55mm,66.07mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2316.304mil|Location2.X=2323.459mil|Location1.Y=4542.485mil|Location2.Y=4549.64mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2316.304mil|Location2.X=2323.459mil|Location1.Y=4542.485mil|Location2.Y=4549.64mil|Absolute=True">Clearance Constraint: (0.1mm &lt; 0.15mm) Between Track (-40.95mm,65.47mm)(-40.95mm,46.57mm) on Top Layer And Track (-41.2mm,65.558mm)(-41.2mm,46.57mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2316.304mil|Location2.X=2323.952mil|Location1.Y=4544.215mil|Location2.Y=4554.262mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2316.304mil|Location2.X=2323.952mil|Location1.Y=4544.215mil|Location2.Y=4554.262mil|Absolute=True">Clearance Constraint: (0.115mm &lt; 0.15mm) Between Track (-40.95mm,65.47mm)(-40.95mm,46.57mm) on Top Layer And Track (-41.2mm,65.558mm)(-41.2mm,65.558mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDV5VQWIFEHBTNBIECIAXQJF3TEJ40M0UKCKT2GLZMRGUKMRCE1UF"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Short-Circuit Constraint (Allowed=No) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4067.242mil|Location2.X=4117.797mil|Location1.Y=1736.533mil|Location2.Y=1787.089mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4067.242mil|Location2.X=4117.797mil|Location1.Y=1736.533mil|Location2.Y=1787.089mil|Absolute=True">Short-Circuit Constraint: Between Pad J5A-1(3.95mm,-5.25mm) on Multi-Layer And Pad J5B-1(3.95mm,-5.25mm) on Multi-Layer Location : [X = 103.95mm][Y = 44.75mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4027.872mil|Location2.X=4078.427mil|Location1.Y=1736.533mil|Location2.Y=1787.089mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4027.872mil|Location2.X=4078.427mil|Location1.Y=1736.533mil|Location2.Y=1787.089mil|Absolute=True">Short-Circuit Constraint: Between Pad J5A-2(2.95mm,-5.25mm) on Multi-Layer And Pad J5B-2(2.95mm,-5.25mm) on Multi-Layer Location : [X = 102.95mm][Y = 44.75mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDJGLLMTJHYYTDNEDGZEUQZO3KIBD40DK112ZCTKV4M52DOR5I2NP"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3522.047mil|Location2.X=4135.433mil|Location1.Y=4120.472mil|Location2.Y=3355.905mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3522.047mil|Location2.X=4135.433mil|Location1.Y=4120.472mil|Location2.Y=3355.905mil|Absolute=True">Un-Routed Net Constraint: Net 3.3V Between Arc (-9.94mm,57.2mm) on Top Layer And Pad J4-5(2.5mm,32.7mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2414.307mil|Location2.X=2515.811mil|Location1.Y=3643.638mil|Location2.Y=4711.48mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2414.307mil|Location2.X=2515.811mil|Location1.Y=3643.638mil|Location2.Y=4711.48mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J4-1(-37.5mm,44mm) on Bottom Layer And Pad J1-10(-36.55mm,68.07mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1612.142mil|Location2.X=2161.48mil|Location1.Y=2763.716mil|Location2.Y=4711.48mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1612.142mil|Location2.X=2161.48mil|Location1.Y=2763.716mil|Location2.Y=4711.48mil|Absolute=True">Un-Routed Net Constraint: Net 1.15V Between Pad J4-3(-57.65mm,21.3mm) on Bottom Layer And Pad J1-19(-45.55mm,68.07mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2795.213mil|Location2.X=3400.653mil|Location1.Y=4377.89mil|Location2.Y=4711.48mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2795.213mil|Location2.X=3400.653mil|Location1.Y=4377.89mil|Location2.Y=4711.48mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J1-2(-28.55mm,68.07mm) on Top Layer And Pad J4-1(-14.8mm,62.65mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2558.992mil|Location2.X=2758.921mil|Location1.Y=3643.638mil|Location2.Y=4711.48mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2558.992mil|Location2.X=2758.921mil|Location1.Y=3643.638mil|Location2.Y=4711.48mil|Absolute=True">Un-Routed Net Constraint: Net 1.0V Between Pad J1-8(-34.55mm,68.07mm) on Top Layer And Pad J4-2(-31.1mm,44mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3980.252mil|Location2.X=4090.614mil|Location1.Y=2028.335mil|Location2.Y=3049.275mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3980.252mil|Location2.X=4090.614mil|Location1.Y=2028.335mil|Location2.Y=3049.275mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J3-1(2.121mm,2.121mm) on Multi-Layer And Pad J4-1(2.5mm,26.3mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3980.252mil|Location2.X=4090.614mil|Location1.Y=2958.598mil|Location2.Y=3562.216mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3980.252mil|Location2.X=4090.614mil|Location1.Y=2958.598mil|Location2.Y=3562.216mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J3-1(2.121mm,39.879mm) on Multi-Layer And Pad J4-1(2.5mm,26.3mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3308.008mil|Location2.X=3877.176mil|Location1.Y=3681.879mil|Location2.Y=4492.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3308.008mil|Location2.X=3877.176mil|Location1.Y=3681.879mil|Location2.Y=4492.189mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J4-1(-14.8mm,62.65mm) on Bottom Layer And Pad J3-1(-2.121mm,44.121mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2977.299mil|Location2.X=3896.423mil|Location1.Y=2009.089mil|Location2.Y=2261.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2977.299mil|Location2.X=3896.423mil|Location1.Y=2009.089mil|Location2.Y=2261.874mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J4-1(-23.2mm,6mm) on Bottom Layer And Pad J3-1(-2.432mm,2.432mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1713.375mil|Location2.X=2506.953mil|Location1.Y=3643.638mil|Location2.Y=3757.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1713.375mil|Location2.X=2506.953mil|Location1.Y=3643.638mil|Location2.Y=3757.937mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J3-1(-55.879mm,44.121mm) on Multi-Layer And Pad J4-1(-37.5mm,44mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1612.142mil|Location2.X=1722.504mil|Location1.Y=2511.748mil|Location2.Y=3527.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1612.142mil|Location2.X=1722.504mil|Location1.Y=2511.748mil|Location2.Y=3527.622mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J3-1(-58mm,39mm) on Multi-Layer And Pad J4-1(-57.65mm,14.9mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2872.441mil|Location2.X=3375.591mil|Location1.Y=3997.244mil|Location2.Y=2304.724mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2872.441mil|Location2.X=3375.591mil|Location1.Y=3997.244mil|Location2.Y=2304.724mil|Absolute=True">Un-Routed Net Constraint: Net 1.8V Between Track (-24.5mm,54.07mm)(-24.5mm,57.9mm) on Top Layer And Pad J4-4(-16.8mm,6mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3561.945mil|Location2.X=3879.984mil|Location1.Y=3860.173mil|Location2.Y=4492.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3561.945mil|Location2.X=3879.984mil|Location1.Y=3860.173mil|Location2.Y=4492.189mil|Absolute=True">Un-Routed Net Constraint: Net 1.8V Between Pad J4-4(-8.35mm,62.65mm) on Bottom Layer And Pad J4-4(-3.3mm,49.9mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3388.189mil|Location2.X=3708.268mil|Location1.Y=4250.394mil|Location2.Y=4535.039mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3388.189mil|Location2.X=3708.268mil|Location1.Y=4250.394mil|Location2.Y=4535.039mil|Absolute=True">Un-Routed Net Constraint: Net 1.8V Between Track (-21.9mm,60.5mm)(-11.4mm,60.5mm) on Top Layer And Pad J4-4(-8.35mm,62.65mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2667.717mil|Location2.X=4192.52mil|Location1.Y=4061.417mil|Location2.Y=1861.811mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2667.717mil|Location2.X=4192.52mil|Location1.Y=4061.417mil|Location2.Y=1861.811mil|Absolute=True">Un-Routed Net Constraint: Net USB_D1_N Between Track (-29.7mm,55.7mm)(-29.7mm,64.58mm) on Top Layer And Pad J5A-1(3.95mm,-5.25mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2655.906mil|Location2.X=4153.15mil|Location1.Y=4061.417mil|Location2.Y=1861.811mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2655.906mil|Location2.X=4153.15mil|Location1.Y=4061.417mil|Location2.Y=1861.811mil|Absolute=True">Un-Routed Net Constraint: Net USB_D1_P Between Track (-30mm,55.7mm)(-30mm,64.579mm) on Top Layer And Pad J5A-2(2.95mm,-5.25mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID2SCGH5YO32CNKBW0Z5YJQB0H4CH3D1DREDCSAJGWONOVJBTZDIVK"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4088.686mil|Location2.X=4096.353mil|Location1.Y=1757.978mil|Location2.Y=1765.644mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4088.686mil|Location2.X=4096.353mil|Location1.Y=1757.978mil|Location2.Y=1765.644mil|Absolute=True">Hole To Hole Clearance Constraint: (Collision &lt; 0.254mm) Between Pad J5A-1(3.95mm,-5.25mm) on Multi-Layer And Pad J5B-1(3.95mm,-5.25mm) on Multi-Layer Pad/Via Touching Holes</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4049.316mil|Location2.X=4056.983mil|Location1.Y=1757.978mil|Location2.Y=1765.644mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4049.316mil|Location2.X=4056.983mil|Location1.Y=1757.978mil|Location2.Y=1765.644mil|Absolute=True">Hole To Hole Clearance Constraint: (Collision &lt; 0.254mm) Between Pad J5A-2(2.95mm,-5.25mm) on Multi-Layer And Pad J5B-2(2.95mm,-5.25mm) on Multi-Layer Pad/Via Touching Holes</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4167.427mil|Location2.X=4175.093mil|Location1.Y=1868.214mil|Location2.Y=1875.88mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4167.427mil|Location2.X=4175.093mil|Location1.Y=1868.214mil|Location2.Y=1875.88mil|Absolute=True">Hole To Hole Clearance Constraint: (Collision &lt; 0.254mm) Between Pad J5A-3(5.95mm,-2.45mm) on Multi-Layer And Pad J5B-3(5.95mm,-2.45mm) on Multi-Layer Pad/Via Touching Holes</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4206.797mil|Location2.X=4214.463mil|Location1.Y=1868.214mil|Location2.Y=1875.88mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4206.797mil|Location2.X=4214.463mil|Location1.Y=1868.214mil|Location2.Y=1875.88mil|Absolute=True">Hole To Hole Clearance Constraint: (Collision &lt; 0.254mm) Between Pad J5A-4(6.95mm,-2.45mm) on Multi-Layer And Pad J5B-4(6.95mm,-2.45mm) on Multi-Layer Pad/Via Touching Holes</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDWR1SQYBKN4HUPWPMKB5STGCYFEAMN02XD5GHR5ODJV3ICO0WUIKH"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Net Antennae (Tolerance=0mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3594.925mil|Location2.X=3659.053mil|Location1.Y=4193.35mil|Location2.Y=4295.532mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3594.925mil|Location2.X=3659.053mil|Location1.Y=4193.35mil|Location2.Y=4295.532mil|Absolute=True">Net Antennae: Arc (-9.94mm,57.2mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3457.13mil|Location2.X=3529.829mil|Location1.Y=4319.335mil|Location2.Y=4435.992mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3457.13mil|Location2.X=3529.829mil|Location1.Y=4319.335mil|Location2.Y=4435.992mil|Absolute=True">Net Antennae: Track (-21.9mm,60.5mm)(-11.4mm,60.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2761.264mil|Location2.X=2780.396mil|Location1.Y=4154.965mil|Location2.Y=4181.814mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2761.264mil|Location2.X=2780.396mil|Location1.Y=4154.965mil|Location2.Y=4181.814mil|Absolute=True">Net Antennae: Track (-29.7mm,55.7mm)(-29.7mm,64.58mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2749.453mil|Location2.X=2768.585mil|Location1.Y=4154.965mil|Location2.Y=4181.814mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2749.453mil|Location2.X=2768.585mil|Location1.Y=4154.965mil|Location2.Y=4181.814mil|Absolute=True">Net Antennae: Track (-30mm,55.7mm)(-30mm,64.579mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2318.352mil|Location2.X=2337.484mil|Location1.Y=3795.516mil|Location2.Y=3822.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2318.352mil|Location2.X=2337.484mil|Location1.Y=3795.516mil|Location2.Y=3822.365mil|Absolute=True">Net Antennae: Track (-40.95mm,65.47mm)(-40.95mm,46.57mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2308.51mil|Location2.X=2327.641mil|Location1.Y=3795.516mil|Location2.Y=3822.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mokus\Projects\WiirdFlex\WiirdFlex Top\WiirdFlex Top.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2308.51mil|Location2.X=2327.641mil|Location1.Y=3795.516mil|Location2.Y=3822.365mil|Absolute=True">Net Antennae: Track (-41.2mm,65.558mm)(-41.2mm,46.57mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
