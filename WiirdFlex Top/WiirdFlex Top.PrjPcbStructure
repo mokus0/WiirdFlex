@@ -1,2 +1,2 @@
-Record=TopLevelDocument|FileName=WiirdFlex Top.SchDoc
-Record=SheetSymbol|SourceDocument=WiirdFlex Top.SchDoc|Designator=TempSense|SchDesignator=TempSense|FileName=TempSense.SchDoc|SymbolType=Normal|RawFileName=TempSense.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
+Record=TopLevelDocument|FileName=WiirdFlex Top.SchDoc|SheetNumber= 
+Record=SheetSymbol|SourceDocument=WiirdFlex Top.SchDoc|Designator=TempSense|SchDesignator=TempSense|FileName=TempSense.SchDoc|SheetNumber= |SymbolType=Normal|RawFileName=TempSense.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 

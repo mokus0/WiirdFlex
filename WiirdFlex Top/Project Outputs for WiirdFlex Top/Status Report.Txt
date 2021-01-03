@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : PCB Document [WiirdFlex Top.PcbDoc]
+   Generated File[WiirdFlex Top-Plated.TXT]
+   Generated File[WiirdFlex Top.LDP]
+   Generated File[WiirdFlex Top.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 3:23:53 PM On 1/2/2021
