@@ -1,0 +1,17 @@
+Top flex improvements
+
+stackup
+  - update with true stackup from fab (0.2mm total thickness, 0.1mm stiffener)
+  - consider more adhesive
+  - adjust USB traces for impedance
+
+other
+  - fix missing cutout
+  - extra ceramic cap for 1.8V rail
+
+silkscreen
+  - logo/board name
+  - version info, date, project URL, etc
+  - polarity marks for caps
+  - cut lines for extra-signals tail?
+  - component labels
