@@ -22,7 +22,10 @@ The final board designs here will include two flexible PCBs designed to be mount
   * AVE (bottom, external), including:
     * I2C, I2S, digital video and "mode" pin
     * optional pull resistors on flex for mode control
-* 
+* Other (pins available for these things)
+  * U-AMP/wiiHUD compatibility
+  * RVL-DD compatibility
+  
 
 Connection Strategies
 ----------------------
@@ -98,21 +101,21 @@ Bottom side:
   - WiFi: 6 pins
 
   External connections:
-    - main ZIF connection for portables
+    - main ZIF connection for portables [27 signal + ?? power/GND]
       - Power (3.3v, 1.8v, GND) [??]
         - this is to provide power from Wii to support circuitry to avoid need for extra routing from the power management system, NOT to power the Wii itself
-      - I2S [4]
       - Digital video [9]
-      - I2C [2]
-      - SPI [3]
+      - I2S [4]
+      - AVE I2C [2]
+      - TP223 (Headphone detect in [wiiHUD connection diagram](https://bitbuilt.net/forums/index.php?threads/gboy-rev3.2959/#lg=thread-2959&slide=1)) [1]
+      - SPI CS for RVL-DD [1]
+      - MX [9], including 2 pins also used for RVL-DD SPI
       - P1 Controller [1]
-      - Headphone detect ("S" line in [wiiHUD diagram](https://bitbuilt.net/forums/index.php?threads/gboy-rev3.2959/#lg=thread-2959&slide=1)) [1]
-      - MX [9]
-    - DLC ZIF connection (some of these probably are dupes of others used elsewhere)
+    - DLC ZIF connection (some of these probably are dupes of others used elsewhere) [29 signal + ?? power/GND]
       - Fan control [1]
       - Reset [1]
       - GC mem cards [12]
-      - Extra test points [6]
+      - Extra test points [5]
       - WiFi [6]
       - Video mode [1]
       - P2-4 controllers [3]
