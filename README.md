@@ -25,7 +25,8 @@ The final board designs here will include two flexible PCBs designed to be mount
 * Other (pins available for these things)
   * U-AMP/wiiHUD compatibility
   * RVL-DD compatibility
-  
+* *MAYBE* loop-around option, fold over and connect extra-signals tail of top flex to bottom flex to bring top side signals out on bottom side
+
 
 Connection Strategies
 ----------------------
@@ -34,12 +35,18 @@ Top Side:
   TODO: the following is a general idea of the order of operations, but parts of some tasks may interleave with others.  There may also be other, better, orders to follow (I'm thinking of an alternate strategy using low-temp solder paste).  Reorganize into an actual instruction list.
   
   TODO: any extra alignment aid? 3d printable pin jig for mounting holes maybe?
+  TODO: make sure instruction list is optimized for incremental testing
 
   0. Prep:
     a. TODO: other prep work (install bottom flex, perform U10/NAND/MX/AVE relocations, etc. and test) 
     b. Trim Wii
     c. Desolder bulk caps (TODO: references), label and set aside, or ensure you have replacements ready (TODO: suggest replacement options)
-    d. Desolder other components (TODO: list which ones) and discard
+    d. Desolder other components:
+      i.    C1, C2, C6, U5: remove and discard, these are not needed
+      ii.   RA10, RA11, R163: remove. If using SD relocation feature, retain these or obtain clean replacements (TODO: characterize needed replacements)
+      iii.  R71: remove.  If using Aurelio's NAND relocation flex, this relocates to R1 on that board.  If using WiirdFlex Bottom, [TODO: describe where it goes].  Otherwise, you're in Advanced User territory and you should know what to do with it.
+      iv.   R19: remove.  [TODO: what's this for, does it need to be re-added somewhere?]
+      v.    RA13: remove.  If using WiirdFlex bottom, this will be relocated to [TODO: describe location].  TODO: describe how to properly relocate this if not using WiirdFlex Bottom.
     e. If using bluetooth and rev 0 flex, cut out bluetooth trace access window on flex
   
   1. Power

@@ -3,10 +3,14 @@ Top flex improvements
 stackup
   - update with true stackup from fab (0.2mm total thickness, 0.1mm stiffener)
   - consider more adhesive
-  - adjust USB traces for impedance
+  - readjust USB traces for impedance after stackup change
 
 other
   - fix missing cutout
+  - consider additional cutouts to avoid need to remove some components:
+    - U5 cluster
+    - R19
+    - RA13
   - extra ceramic cap for 1.8V rail
 
 silkscreen
