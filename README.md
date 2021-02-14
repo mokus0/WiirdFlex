@@ -87,6 +87,10 @@ Top Side:
 Bottom side:
   TODO: this section is a work in progress. it currently is just a general outline of the planned connections from a couple different perspectives.  pin counts are estimates.
   
+  - Components to remove:
+    - WiFi termination resistors (TODO: relocate onto flex) (TODO: decide whether to include cutout on flex for those that don't want to remove them)
+    - all AV-related components (TODO: including i2c pull-ups? one or both?)
+  
   - A/V [relocation]: 19 pins
     - I2S audio (4 pins)
       - MCLK, WS, SD, SCK
